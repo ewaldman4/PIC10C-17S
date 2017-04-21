@@ -22,25 +22,39 @@ several decks of cards at the same time.
 Card::Card() {
 	int r = 1 + rand() % 4;
 	switch (r) {
-	case 1: suit = OROS; break;
-	case 2: suit = COPAS; break;
-	case 3: suit = ESPADAS; break;
-	case 4: suit = BASTOS; break;
+	case 1: suit = OROS; 
+		break;
+	case 2: suit = COPAS;
+		break;
+	case 3: suit = ESPADAS;
+		break;
+	case 4: suit = BASTOS; 
+		break;
 	default: break;
 	}
 
 	r = 1 + rand() % 10;
 	switch (r) {
-	case  1: rank = AS; break;
-	case  2: rank = DOS; break;
-	case  3: rank = TRES; break;
-	case  4: rank = CUATRO; break;
-	case  5: rank = CINCO; break;
-	case  6: rank = SEIS; break;
-	case  7: rank = SIETE; break;
-	case  8: rank = SOTA; break;
-	case  9: rank = CABALLO; break;
-	case 10: rank = REY; break;
+	case  1: rank = AS; 
+		break;
+	case  2: rank = DOS; 
+		break;
+	case  3: rank = TRES; 
+		break;
+	case  4: rank = CUATRO; 
+		break;
+	case  5: rank = CINCO; 
+		break;
+	case  6: rank = SEIS; 
+		break;
+	case  7: rank = SIETE; 
+		break;
+	case  8: rank = SOTA; 
+		break;
+	case  9: rank = CABALLO;
+		break;
+	case 10: rank = REY; 
+		break;
 	default: break;
 	}
 }
@@ -61,7 +75,8 @@ string Card::get_spanish_suit() const {
 	case BASTOS:
 		suitName = "bastos";
 		break;
-	default: break;
+	default: 
+		break;
 	}
 	return suitName;
 }
@@ -100,23 +115,71 @@ string Card::get_spanish_rank() const {
 	case REY:
 		rankName = "Rey";
 		break;
-	default: break;
+	default: 
+		break;
 	}
 	return rankName;
 }
 
 
-
-// Accessor: returns a string with the suit of the card in English 
-// This is just a stub! Modify it to your liking.
 string Card::get_english_suit() const {
-	return "";
+	string englishSuitName = "";
+	switch (suit) {
+	case OROS:
+		englishSuitName = "golds";
+		break;
+	case COPAS:
+		englishSuitName = "cups";
+		break;
+	case ESPADAS:
+		englishSuitName = "swords";
+		break;
+	case BASTOS:
+		englishSuitName = "clubs";
+		break;
+	default:
+		break;
+	}
+	return englishSuitName;
 }
 
-// Accessor: returns a string with the rank of the card in English 
-// This is just a stub! Modify it to your liking.
 string Card::get_english_rank() const {
-	return "";
+	string englishRankName;
+	switch (rank) {
+	case AS:
+		englishRankName = "Ace";
+		break;
+	case DOS:
+		englishRankName = "Two";
+		break;
+	case TRES:
+		englishRankName = "Three";
+		break;
+	case CUATRO:
+		englishRankName = "Four";
+		break;
+	case CINCO:
+		englishRankName = "Five";
+		break;
+	case SEIS:
+		englishRankName = "Six";
+		break;
+	case SIETE:
+		englishRankName = "Seven";
+		break;
+	case SOTA:
+		englishRankName = "Jack";
+		break;
+	case CABALLO:
+		englishRankName = "Knight";
+		break;
+	case REY:
+		englishRankName = "King";
+		break;
+	default:
+		break;
+	}
+	return englishRankName;
 }
 
 
