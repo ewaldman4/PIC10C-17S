@@ -7,7 +7,8 @@
 #include "cards.h"
 using namespace std;
 
-// Global constants (if any)
+const int USER_MONEY = 100;
+const int DEALER_MONEY = 900;
 
 
 // Non member functions declarations (if any)
@@ -18,8 +19,6 @@ using namespace std;
 
 // Stub for main
 int main() {
-	Hand hand1;
-	Card card1;
-	hand1.addCard(card1);
-	return 0;
+	Player Dealer(DEALER_MONEY);
+	Player User(USER_MONEY);
 }
