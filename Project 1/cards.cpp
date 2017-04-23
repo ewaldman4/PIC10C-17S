@@ -190,6 +190,17 @@ int Card::get_rank() const {
 	return static_cast<int>(rank) + 1;
 }
 
+double Card::rankToValue() const {
+	int rank = get_rank();
+	double sieteValue = 0;
+	if (rank >= 10)
+		sieteValue = .5;
+	else
+		sieteValue = rank;
+	return sieteValue;
+
+}
+
 // Comparison operator for cards
 // Returns TRUE if card1 < card2
 bool Card::operator < (Card card2) const {
@@ -202,7 +213,16 @@ bool Card::operator < (Card card2) const {
 Hand class
 ************************************************* */
 // Implemente the member functions of the Hand class here.
+Hand::Hand()
+{
+	hand;
+	handSum = 0;
+}
 
+void Hand::addCard(const Card& card) {
+	hand.push_back(card);
+	handSum += card.rankToValue();
+}
 
 
 /* *************************************************

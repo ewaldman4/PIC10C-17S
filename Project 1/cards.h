@@ -40,6 +40,7 @@ public:
 	// Converts card rank to number.
 	// The possible returns are: 1, 2, 3, 4, 5, 6, 7, 10, 11 and 12
 	int get_rank() const;
+	double rankToValue() const;
 
 	// Compare rank of two cards. E.g: Eight<Jack is true.
 	// Assume Ace is always 1. 
@@ -54,13 +55,13 @@ private:
 
 class Hand {
 public:
-	// A vector of Cards
 	Hand();
+	void addCard(const Card& card);
 
-	// You decide what functions you'll need...
 
 private:
-	// You decide what fields you'll need...
+	std::vector<Card> hand;
+	double handSum;
 };
 
 
