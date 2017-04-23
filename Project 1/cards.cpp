@@ -228,5 +228,16 @@ void Hand::addCard(const Card& card) {
 /* *************************************************
 Player class
 ************************************************* */
-// Implemente the member functions of the Player class here.
+Player::Player(int m)
+{
+	hand;
+	money = m;
+}
 
+int Player::getCurrentMoney() const {
+	return money;
+}
+
+void Player::changeCurrentMoney(int m) {
+	money += m;
+}
