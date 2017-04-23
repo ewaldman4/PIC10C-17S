@@ -121,6 +121,10 @@ string Card::get_spanish_rank() const {
 	return rankName;
 }
 
+string Card::nameOfSpanishCard() const {
+	string spanishCard = get_spanish_rank() + " de " + get_spanish_suit();
+	return spanishCard;
+}
 
 string Card::get_english_suit() const {
 	string englishSuitName = "";
@@ -183,6 +187,10 @@ string Card::get_english_rank() const {
 }
 
 
+string Card::nameOfEnglishCard() const {
+	string englishCard = get_english_rank() + " of " + get_english_suit();
+	return englishCard;
+}
 
 // Assigns a numerical value to card based on rank.
 // AS=1, DOS=2, ..., SIETE=7, SOTA=10, CABALLO=11, REY=12
@@ -224,6 +232,10 @@ void Hand::addCard(const Card& card) {
 	handSum += card.rankToValue();
 }
 
+double Hand::getSum() const {
+	return handSum;
+}
+
 
 /* *************************************************
 Player class
@@ -240,4 +252,8 @@ int Player::getCurrentMoney() const {
 
 void Player::changeCurrentMoney(int m) {
 	money += m;
+}
+
+Hand Player::getHand() const {
+	return hand;
 }

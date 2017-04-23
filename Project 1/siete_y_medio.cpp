@@ -31,5 +31,17 @@ int main() {
 			cout << "You're trying to cheat, aren't you?\nYou can only bet as much as you have!\n   Enter bet amount: ";
 			cin >> betAmount;
 		}
+		bool keepDealing = true;
+		do {
+			Dealer.getHand.addCard(new Card());
+			User.getHand.addCard(new Card());
+			cout << "Your cards:\n";
+			for (int handSize = 0; handSize < Dealer.getHand.size(); handSize++)
+			{
+				cout << "/t" << User.getHand.at(handSize).nameOfSpanishCard() << "\t\t("
+					<< User.getHand.at(handSize).nameOfEnglishCard() << ")\n";
+			}
+		} while (keepDealing);
+
 	} while (false);
 }

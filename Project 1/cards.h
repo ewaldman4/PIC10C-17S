@@ -28,6 +28,7 @@ public:
 	// Accessors 
 	string get_spanish_suit() const;
 	string get_spanish_rank() const;
+	string nameOfSpanishCard() const;
 
 	/*
 	These are the only functions you'll need to code
@@ -36,6 +37,7 @@ public:
 	*/
 	string get_english_suit() const;
 	string get_english_rank() const;
+	string nameOfEnglishCard() const;
 
 	// Converts card rank to number.
 	// The possible returns are: 1, 2, 3, 4, 5, 6, 7, 10, 11 and 12
@@ -57,7 +59,7 @@ class Hand {
 public:
 	Hand();
 	void addCard(const Card& card);
-
+	double getSum() const;
 
 private:
 	std::vector<Card> hand;
@@ -70,6 +72,7 @@ public:
 	Player(int m);
 	int getCurrentMoney() const;
 	void changeCurrentMoney(int m);
+	Hand getHand() const;
 
 private:
 	int money;
