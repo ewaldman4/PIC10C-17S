@@ -223,17 +223,20 @@ Hand class
 // Implemente the member functions of the Hand class here.
 Hand::Hand()
 {
-	hand;
 	handSum = 0;
 }
 
-void Hand::addCard(const Card& card) {
+void Hand::addCard(Card card) {
 	hand.push_back(card);
-	handSum += card.rankToValue();
+	handSum += (card).rankToValue();
 }
 
 double Hand::getSum() const {
 	return handSum;
+}
+
+vector<Card> Hand::getCards() const {
+	return hand;
 }
 
 

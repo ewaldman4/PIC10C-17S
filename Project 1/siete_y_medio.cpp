@@ -33,15 +33,15 @@ int main() {
 		}
 		bool keepDealing = true;
 		do {
-			Dealer.getHand.addCard(new Card());
-			User.getHand.addCard(new Card());
+			Dealer.getHand().addCard(new Card());
+			User.getHand().addCard(new Card());
 			cout << "Your cards:\n";
-			for (int handSize = 0; handSize < Dealer.getHand.size(); handSize++)
+			for (int handSize = 0; handSize < User.getHand().getCards().size(); handSize++)
 			{
-				cout << "/t" << User.getHand.at(handSize).nameOfSpanishCard() << "\t\t("
-					<< User.getHand.at(handSize).nameOfEnglishCard() << ")\n";
+				cout << "/t" << User.getHand().getCards().(at(handSize).nameOfSpanishCard() << "\t\t("
+					<< User.getHand().getCards().at(handSize).nameOfEnglishCard() << ")\n";
 			}
-		} while (keepDealing);
+		} while (false);
 
 	} while (false);
 }

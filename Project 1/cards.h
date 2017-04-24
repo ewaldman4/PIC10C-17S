@@ -58,8 +58,9 @@ private:
 class Hand {
 public:
 	Hand();
-	void addCard(const Card& card);
+	void addCard(Card card);
 	double getSum() const;
+	vector<Card> getCards() const;
 
 private:
 	std::vector<Card> hand;
