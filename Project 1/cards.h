@@ -58,22 +58,28 @@ private:
 class Hand {
 public:
 	Hand();
-	void addCard(Card card);
+	void addCard(Card* card);
 	double getSum() const;
-	vector<Card> getCards() const;
+	Card* getCurrentCard(int index) const;
+	int getHandSize() const;
 
 private:
-	std::vector<Card> hand;
+	std::vector<Card*> hand;
 	double handSum;
+	int handSize;
 };
 
 
 class Player {
 public:
 	Player(int m);
-	int getCurrentMoney() const;
+/*	int getCurrentMoney() const;
 	void changeCurrentMoney(int m);
-	Hand getHand() const;
+	*/
+	void addCard(Card* card);
+	int handSize() const;
+	Card* getCurrentCard(int index) const;
+	double getHandSum() const;
 
 private:
 	int money;

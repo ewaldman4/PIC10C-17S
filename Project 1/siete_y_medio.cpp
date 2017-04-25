@@ -19,29 +19,82 @@ const int DEALER_MONEY = 900;
 
 // Stub for main
 int main() {
-	Player Dealer(DEALER_MONEY);
-	Player User(USER_MONEY);
-	cout << "Let's begin our game of Siete y Medio.\nYour current wallet is " << USER_MONEY << "\n";
+	int currentUserMoney = USER_MONEY;
+	int currentDealerMoney = DEALER_MONEY;
+	cout << "Let's begin our game of Siete y Medio.\n";
 	int betAmount = 0;
 	do {
-		cout << "   Enter bet amount: ";
+		Player Dealer(currentDealerMoney);
+		Player User(currentUserMoney);
+		cout << "Your current wallet is " << currentUserMoney << "\n\tEnter bet amount: ";
 		cin >> betAmount;
-		if (betAmount > USER_MONEY)
+		if (betAmount > currentUserMoney)
 		{
 			cout << "You're trying to cheat, aren't you?\nYou can only bet as much as you have!\n   Enter bet amount: ";
 			cin >> betAmount;
 		}
 		bool keepDealing = true;
+		string yesOrNo = "";
 		do {
-			Dealer.getHand().addCard(new Card());
-			User.getHand().addCard(new Card());
+			User.addCard(new Card());
 			cout << "Your cards:\n";
-			for (int handSize = 0; handSize < User.getHand().getCards().size(); handSize++)
+			for (int x = 0; x < User.handSize(); x++)
 			{
-				cout << "/t" << User.getHand().getCards().(at(handSize).nameOfSpanishCard() << "\t\t("
-					<< User.getHand().getCards().at(handSize).nameOfEnglishCard() << ")\n";
+				cout << "\t" << User.getCurrentCard(x)->get_spanish_rank() << " de " << User.getCurrentCard(x)->get_spanish_suit()
+					<< "\t(" << User.getCurrentCard(x)->get_english_rank() << " of "
+					<< User.getCurrentCard(x)->get_english_suit() << ")\n";
 			}
-		} while (false);
+			cout << "Your total is " << User.getHandSum() << ". ";
+			if (User.getHandSum() > 7.5)
+			{
+				cout << "\nYou've lost!\n";
+				keepDealing = false;
+				yesOrNo = "n";
+			}
+			else if (User.getHandSum() == 7.5) {
+				cout << "\nYou can't take anymore cards!\n";
+				keepDealing = false;
+				yesOrNo = "n";
+			}
+			else {
+				cout << "Do you want to continue? y/n ";
+				cin >> yesOrNo;
+				if (yesOrNo == "n")
+				{
+					keepDealing = false;
+				}
+			}
+		} while (keepDealing);
+		bool dealerKeepsAccepting = true;
+		if (User.getHandSum() > 7.5) {
+			dealerKeepsAccepting = false;
+		}
+		do {
+			Dealer.addCard(new Card());
+			cout << "Dealer's cards:\n";
+			for (int x = 0; x < Dealer.handSize(); x++)
+			{
+				cout << "\t" << Dealer.getCurrentCard(x)->get_spanish_rank() << " de " << User.getCurrentCard(x)->get_spanish_suit()
+					<< "\t(" << Dealer.getCurrentCard(x)->get_english_rank() << " of "
+					<< Dealer.getCurrentCard(x)->get_english_suit() << ")\n";
+			}
+			cout << "The dealer's total is " << Dealer.getHandSum() << "\n";
+			if (Dealer.getHandSum() >= 5.5) {
+				dealerKeepsAccepting = false;
+			}
+		} while (dealerKeepsAccepting);
 
-	} while (false);
+		if (User.getHandSum() > 7.5 || User.getHandSum() < Dealer.getHandSum() && Dealer.getHandSum() <= 7.5) {
+			currentUserMoney -= betAmount;
+			cout << "\nToo bad. You lose " << betAmount << "\n\n";
+		}
+		else if (Dealer.getHandSum() > 7.5 || Dealer.getHandSum() < User.getHandSum() && User.getHandSum() <= 7.5){
+			currentUserMoney += betAmount;
+			currentDealerMoney -= betAmount;
+			cout << "\nYou win " << betAmount << "\n\n";
+		}
+		else if (Dealer.getHandSum() == User.getHandSum()) {
+			cout << "\nNobody wins!\n\n";
+		}
+	} while (currentUserMoney > 0 && currentDealerMoney > 0);
 }

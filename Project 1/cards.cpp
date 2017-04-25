@@ -224,21 +224,26 @@ Hand class
 Hand::Hand()
 {
 	handSum = 0;
+	handSize = 0;
 }
 
-void Hand::addCard(Card card) {
+void Hand::addCard(Card* card) {
 	hand.push_back(card);
-	handSum += (card).rankToValue();
+	handSum += card->rankToValue();
+	handSize++;
 }
 
 double Hand::getSum() const {
 	return handSum;
 }
 
-vector<Card> Hand::getCards() const {
-	return hand;
+Card* Hand::getCurrentCard(int index) const {
+	return hand[index];
 }
 
+int Hand::getHandSize() const {
+	return handSize;
+}
 
 /* *************************************************
 Player class
@@ -248,7 +253,7 @@ Player::Player(int m)
 	hand;
 	money = m;
 }
-
+/*
 int Player::getCurrentMoney() const {
 	return money;
 }
@@ -256,7 +261,19 @@ int Player::getCurrentMoney() const {
 void Player::changeCurrentMoney(int m) {
 	money += m;
 }
+*/
+void Player::addCard(Card* card) {
+	hand.addCard(card);
+}
 
-Hand Player::getHand() const {
-	return hand;
+int Player::handSize() const{
+	return hand.getHandSize();
+}
+
+Card* Player::getCurrentCard(int index) const {
+	return hand.getCurrentCard(index);
+}
+
+double Player::getHandSum() const {
+	return hand.getSum();
 }
