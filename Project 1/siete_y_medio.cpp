@@ -74,7 +74,7 @@ int main() {
 			cout << "Dealer's cards:\n";
 			for (int x = 0; x < Dealer.handSize(); x++)
 			{
-				cout << "\t" << Dealer.getCurrentCard(x)->get_spanish_rank() << " de " << User.getCurrentCard(x)->get_spanish_suit()
+				cout << "\t" << Dealer.getCurrentCard(x)->get_spanish_rank() << " de " << Dealer.getCurrentCard(x)->get_spanish_suit()
 					<< "\t(" << Dealer.getCurrentCard(x)->get_english_rank() << " of "
 					<< Dealer.getCurrentCard(x)->get_english_suit() << ")\n";
 			}
@@ -97,4 +97,12 @@ int main() {
 			cout << "\nNobody wins!\n\n";
 		}
 	} while (currentUserMoney > 0 && currentDealerMoney > 0);
+	if (currentUserMoney > 0)
+	{
+		cout << "Thanks for playing!\n";
+	}
+	else
+	{
+		cout << "Better luck next time!\n";
+	}
 }
