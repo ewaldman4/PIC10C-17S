@@ -19,6 +19,7 @@ const int DEALER_MONEY = 900;
 
 // Stub for main
 int main() {
+	srand(time(0));
 	int currentUserMoney = USER_MONEY;
 	int currentDealerMoney = DEALER_MONEY;
 	cout << "Let's begin our game of Siete y Medio.\n";
