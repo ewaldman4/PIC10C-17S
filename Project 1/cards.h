@@ -42,6 +42,7 @@ public:
 	// Converts card rank to number.
 	// The possible returns are: 1, 2, 3, 4, 5, 6, 7, 10, 11 and 12
 	int get_rank() const;
+	//changes rank to value in game
 	double rankToValue() const;
 
 	// Compare rank of two cards. E.g: Eight<Jack is true.
@@ -58,9 +59,14 @@ private:
 class Hand {
 public:
 	Hand();
+	~Hand();
+	//adds a card to our hand
 	void addCard(Card* card);
+	//gets the sum of all cards in the hand
 	double getSum() const;
+	//returns card at index 
 	Card* getCurrentCard(int index) const;
+	//returns hand size
 	int getHandSize() const;
 
 private:
@@ -73,9 +79,8 @@ private:
 class Player {
 public:
 	Player(int m);
-/*	int getCurrentMoney() const;
-	void changeCurrentMoney(int m);
-	*/
+
+	//use hand methods with player
 	void addCard(Card* card);
 	int handSize() const;
 	Card* getCurrentCard(int index) const;
