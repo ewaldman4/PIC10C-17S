@@ -107,19 +107,19 @@ double Grade_Calculator:: calculateMath131BHGrade(){
     return overallGradeScheme;
 }
 
-//This signal changes the grading scheme used depending on whether the button labelled "PIC10C" is clicked
+//This slot changes the grading scheme used depending on whether the button labelled "PIC10C" is clicked
 void Grade_Calculator:: radioButtonClicked(){
     typePIC10C = true;
     typeMath131BH = false;
 }
 
-//This signal changes the grading scheme used depending on whether the button labelled "Math131BH" is clicked
+//This slot changes the grading scheme used depending on whether the button labelled "Math131BH" is clicked
 void Grade_Calculator:: radioButton2Clicked(){
     typeMath131BH = true;
     typePIC10C = false;
 }
 
-//This signal resets all values on the spin boxes to 0 if reset is clicked
+//This slot resets all values on the spin boxes to 0 if reset is clicked
 void Grade_Calculator:: resetClicked(){
     ui->HW1_Received_Score->setValue(0);
     ui->HW1_Total_Score->setValue(0);
@@ -146,7 +146,7 @@ void Grade_Calculator:: resetClicked(){
     ui->lineEdit->setText("0%");
 }
 
-//This signal displays the grade value in a text box if submit is clicked, and will display an error under certain conditions
+//This slot displays the grade value in a text box if submit is clicked, and will display an error under certain conditions
 void Grade_Calculator:: submitClicked(){
     double grade = -2;
     if(typePIC10C == true)
