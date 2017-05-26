@@ -11,6 +11,7 @@ Grade_Calculator::Grade_Calculator(QWidget *parent) :
     QObject::connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(submitClicked()));
     QObject::connect(ui->radioButton, SIGNAL(clicked()), this, SLOT(radioButtonClicked()));
     QObject::connect(ui->radioButton_2, SIGNAL(clicked()), this, SLOT(radioButton2Clicked()));
+    QObject::connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(resetClicked()));
 
     ui->HW1_Received_Score->setMaximum(100);
     ui->HW1_Total_Score->setMaximum(100);
@@ -108,6 +109,32 @@ void Grade_Calculator:: radioButtonClicked(){
 void Grade_Calculator:: radioButton2Clicked(){
     typeMath131BH = true;
     typePIC10C = false;
+}
+
+void Grade_Calculator:: resetClicked(){
+    ui->HW1_Received_Score->setValue(0);
+    ui->HW1_Total_Score->setValue(0);
+    ui->HW2_Received_Score->setValue(0);
+    ui->HW2_Total_Score->setValue(0);
+    ui->HW3_Received_Score->setValue(0);
+    ui->HW3_Total_Score->setValue(0);
+    ui->HW4_Received_Score->setValue(0);
+    ui->HW4_Total_Score->setValue(0);
+    ui->HW5_Received_Score->setValue(0);
+    ui->HW5_Total_Score->setValue(0);
+    ui->HW6_Received_Score->setValue(0);
+    ui->HW6_Total_Score->setValue(0);
+    ui->HW7_Received_Score->setValue(0);
+    ui->HW7_Total_Score->setValue(0);
+    ui->HW8_Received_Score->setValue(0);
+    ui->HW8_Total_Score->setValue(0);
+    ui->Midterm_Received_Score->setValue(0);
+    ui->Midterm_Total_Score->setValue(0);
+    ui->FinalExam_Received_Score->setValue(0);
+    ui->FinalExam_Total_Score->setValue(0);
+    ui->FinalProject_Received_Score->setValue(0);
+    ui->FinalProject_Total_Score->setValue(0);
+    ui->lineEdit->setText("0%");
 }
 
 void Grade_Calculator:: submitClicked(){
