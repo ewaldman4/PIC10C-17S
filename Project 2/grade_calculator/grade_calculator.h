@@ -21,6 +21,7 @@ private slots:
     void radioButtonClicked();
     void radioButton2Clicked();
     void submitClicked();
+    void resetClicked();
 
 private:
     Ui::Grade_Calculator *ui;
