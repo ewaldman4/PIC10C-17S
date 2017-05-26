@@ -1,6 +1,8 @@
 #include "grade_calculator.h"
 #include "ui_grade_calculator.h"
 
+//The constructor. This constructor sets the connections between slots and signals
+//as well as sets the maxima of all the slot boxes in the program
 Grade_Calculator::Grade_Calculator(QWidget *parent) :
     typePIC10C(false),
     typeMath131BH(false),
@@ -37,11 +39,14 @@ Grade_Calculator::Grade_Calculator(QWidget *parent) :
     ui->FinalProject_Total_Score->setMaximum(100);
 }
 
+//The destructor. Through RAII properties, this will delete everything.
 Grade_Calculator::~Grade_Calculator()
 {
     delete ui;
 }
 
+//This program computes the PIC10C grade by taking inputs from values given to the spin boxes and
+//using a formula given on the rubric to compute grades.
 double Grade_Calculator:: calculatePIC10CGrade(){
     double hw1Score = (ui->HW1_Received_Score->text()).toDouble()/(ui->HW1_Total_Score->text()).toDouble();
     double hw2Score = (ui->HW2_Received_Score->text()).toDouble()/(ui->HW2_Total_Score->text()).toDouble();
@@ -73,7 +78,8 @@ double Grade_Calculator:: calculatePIC10CGrade(){
     }
 }
 
-
+//This program computes the Math131BH grade by taking inputs from values given to the spin boxes and
+//using a formula given on the rubric to compute grades.
 double Grade_Calculator:: calculateMath131BHGrade(){
     double hw1Score = (ui->HW1_Received_Score->text()).toDouble()/(ui->HW1_Total_Score->text()).toDouble();
     double hw2Score = (ui->HW2_Received_Score->text()).toDouble()/(ui->HW2_Total_Score->text()).toDouble();
@@ -101,16 +107,19 @@ double Grade_Calculator:: calculateMath131BHGrade(){
     return overallGradeScheme;
 }
 
+//This signal changes the grading scheme used depending on whether the button labelled "PIC10C" is clicked
 void Grade_Calculator:: radioButtonClicked(){
     typePIC10C = true;
     typeMath131BH = false;
 }
 
+//This signal changes the grading scheme used depending on whether the button labelled "Math131BH" is clicked
 void Grade_Calculator:: radioButton2Clicked(){
     typeMath131BH = true;
     typePIC10C = false;
 }
 
+//This signal resets all values on the spin boxes to 0 if reset is clicked
 void Grade_Calculator:: resetClicked(){
     ui->HW1_Received_Score->setValue(0);
     ui->HW1_Total_Score->setValue(0);
@@ -137,6 +146,7 @@ void Grade_Calculator:: resetClicked(){
     ui->lineEdit->setText("0%");
 }
 
+//This signal displays the grade value in a text box if submit is clicked, and will display an error under certain conditions
 void Grade_Calculator:: submitClicked(){
     double grade = -2;
     if(typePIC10C == true)
