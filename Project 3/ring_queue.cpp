@@ -181,7 +181,7 @@ public:
 	}
 	iterator end() {
 		// Replace the line(s) below with your code.
-		return iterator(this, ring_size - 1);
+		return iterator(this, ring_size);
 	}
 
 	// Miscellaneous functions
@@ -214,9 +214,6 @@ int main() {
 
 	// RingQueue<int,7>::iterator it = rq.begin() ; 
 	auto it = rq.begin();
-	std::cout << "\n" << *it << "\n\n";
-	auto its = rq.end();
-	std::cout << *its << "\n\n";
 	for (size_t i = 0; i < rq.size(); ++i) {
 		std::cout << "Value: " << *it << ", address: " << &(*it) << '\n';
 		++it;
@@ -229,13 +226,13 @@ int main() {
 	// implementation of RingQueue<ItemType,int>::end(). 
 	// If the implementation is not correct, it might result in 
 	// an infinite loop.
-	/**
+	
 	std::cout << "Queue via iterators: \n";
 	for ( auto it = rq.begin() ; it != rq.end() ; ++it ) {
 	std::cout << "Value: " << *it << ", address: " << &(*it) << '\n';
 	}
 	std::cout << '\n';
-	*/
+	
 
 
 
