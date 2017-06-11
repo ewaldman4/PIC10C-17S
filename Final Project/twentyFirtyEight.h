@@ -20,12 +20,14 @@ public:
     ~TwentyFortyEight();
 
 private:
+    void changeColor(int verticalPosition, int horizontalPosition);
     Ui::TwentyFortyEight *ui;
     QWidget *mainWidget;
     QPushButton *newGame;
     QGridLayout *grid;
     QLabel *score;
-    QLabel* valuesOfGrid[4][4];
+    QLabel *valuesOfGrid[4][4];
+    QLabel *gameTitle;
 
 };
 
