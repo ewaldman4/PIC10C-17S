@@ -5,6 +5,8 @@ TwentyFortyEight::TwentyFortyEight(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::TwentyFortyEight)
 {
+    QTime time = QTime::currentTime();
+    srand(time.msec());
     mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
     grid = new QGridLayout(mainWidget);
@@ -37,6 +39,7 @@ TwentyFortyEight::TwentyFortyEight(QWidget *parent) :
         }
 
     setFixedSize(400,400);
+    placeRandomValueInGrid();
 }
 
 TwentyFortyEight::~TwentyFortyEight()
@@ -48,6 +51,30 @@ void TwentyFortyEight::changeColor(int verticalPosition, int horizontalPosition)
 {
     switch(valuesOfGrid[verticalPosition][horizontalPosition]->text().toInt()){
         case 0:
-        valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: white; color: black; font: 15pt; border-radius: 7px}");
+        valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: #ccc79b;}");
+        break;
+        case 2:
+        valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: blue; color: black; font: 15pt; border-radius: 7px}");
+        break;
     }
 }
+
+ void TwentyFortyEight:: placeRandomValueInGrid(){
+     bool gridIsEmpty = true;
+     for(int verticalIterator = 0; verticalIterator < 4; verticalIterator++)
+        {
+         for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++)
+            {
+             if(valuesOfGrid[verticalIterator][horizontalIterator]->text() != "")
+             {
+                 gridIsEmpty = false;
+             }
+         }
+     }
+     if(gridIsEmpty == true){
+         int randomVerticalPosition = qrand()%4;
+         int randomHorizontalPosition = qrand()%4;
+         valuesOfGrid[randomVerticalPosition][randomHorizontalPosition]->setText("2");
+         changeColor(randomVerticalPosition, randomHorizontalPosition);
+     }
+ }
