@@ -6,6 +6,7 @@
 #include <QKeyEvent>
 #include <QLabel>
 #include <QPushButton>
+#include <QTime>
 
 namespace Ui {
 class TwentyFortyEight;
@@ -21,6 +22,7 @@ public:
 
 private:
     void changeColor(int verticalPosition, int horizontalPosition);
+    void placeRandomValueInGrid();
     Ui::TwentyFortyEight *ui;
     QWidget *mainWidget;
     QPushButton *newGame;
