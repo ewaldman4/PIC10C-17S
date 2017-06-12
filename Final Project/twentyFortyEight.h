@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QTime>
+#include <QKeyEvent>
 
 namespace Ui {
 class TwentyFortyEight;
@@ -21,7 +22,9 @@ public:
     ~TwentyFortyEight();
 
 private:
-    void changeColor(int verticalPosition, int horizontalPosition);
+    void keyPressEvent (QKeyEvent *event);
+    void upIsPressed();
+    void changeTile(int verticalPosition, int horizontalPosition);
     void placeRandomValueInGrid();
     Ui::TwentyFortyEight *ui;
     QWidget *mainWidget;
