@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include <QTime>
 #include <QKeyEvent>
+#include <iostream>
 
 namespace Ui {
 class TwentyFortyEight;
@@ -24,6 +25,9 @@ public:
 private:
     void keyPressEvent (QKeyEvent *event);
     void upIsPressed();
+    //void leftIsPressed();
+    //void rightIsPressed();
+    void downIsPressed();
     void changeTile(int verticalPosition, int horizontalPosition);
     void placeRandomValueInGrid();
     Ui::TwentyFortyEight *ui;
