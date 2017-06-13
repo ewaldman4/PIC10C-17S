@@ -24,10 +24,10 @@ public:
 
 private:
     void keyPressEvent (QKeyEvent *event);
-    void upIsPressed();
-    void leftIsPressed();
-    void rightIsPressed();
-    void downIsPressed();
+    bool upIsPressed();
+    bool leftIsPressed();
+    bool rightIsPressed();
+    bool downIsPressed();
     void changeTile(int verticalPosition, int horizontalPosition);
     void placeRandomValueInGrid();
     Ui::TwentyFortyEight *ui;
