@@ -40,12 +40,15 @@ TwentyFortyEight::TwentyFortyEight(QWidget *parent) :
 
     setFixedSize(400,400);
     setFocus();
-    placeRandomValueInGrid();
-    valuesOfGrid[1][0]->setText("2");
+   // placeRandomValueInGrid();
+    valuesOfGrid[0][0]->setText("8");
+    changeTile(0,0);
+    valuesOfGrid[1][0]->setText("4");
     changeTile(1,0);
     valuesOfGrid[2][0]->setText("2");
     changeTile(2,0);
-
+    valuesOfGrid[3][0]->setText("2");
+    changeTile(3,0);
 }
 
 TwentyFortyEight::~TwentyFortyEight()
@@ -64,6 +67,9 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
             break;
         case 4:
             valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: red; color: black; font: 15pt; border-radius: 7px}");
+            break;
+        case 8:
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: green; color: black; font: 15pt; border-radius: 7px}");
             break;
     }
 }
@@ -126,10 +132,10 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
          case Qt::Key_Up:
              upIsPressed();
              break;
-             /*
-         case Qt::Key_Left():
-             leftIsPressed();
+         case Qt::Key_Down:
+             downIsPressed();
              break;
+             /*
          case Qt::Key_Right():
              rightIsPressed();
              break;
@@ -145,31 +151,63 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
 
  void TwentyFortyEight::upIsPressed()
  {
-     for(int verticalIterator = 3; verticalIterator > 0; verticalIterator--)
+     for(int verticalIterator = 0; verticalIterator < 3; verticalIterator++)
         {for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++)
          {
-           if(valuesOfGrid[verticalIterator][horizontalIterator]->text() == valuesOfGrid[verticalIterator--][horizontalIterator]->text()
+           if((valuesOfGrid[verticalIterator][horizontalIterator]->text() == valuesOfGrid[verticalIterator + 1][horizontalIterator]->text())
                    && valuesOfGrid[verticalIterator][horizontalIterator]->text() != "")
            {
-               valuesOfGrid[verticalIterator][horizontalIterator]->setText("");
+               valuesOfGrid[verticalIterator + 1][horizontalIterator]->setText("");
+               changeTile(verticalIterator + 1, horizontalIterator);
+               valuesOfGrid[verticalIterator][horizontalIterator]->setText(QString::number(2*valuesOfGrid[verticalIterator][horizontalIterator]->text().toInt()));
                changeTile(verticalIterator, horizontalIterator);
-               valuesOfGrid[verticalIterator--][horizontalIterator]->setText(QString::number(2*valuesOfGrid[verticalIterator--][horizontalIterator]->text().toInt()));
-               changeTile(verticalIterator--, horizontalIterator);
            }
          }
      }
-     /*
-     for(int verticalIterator = 0; verticalIterator < 3; verticalIterator++)
-        {for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++)
-            {
-             if(valuesOfGrid[verticalIterator][horizontalIterator]->text() == "" && valuesOfGrid[verticalIterator++][horizontalIterator]->text() != "")
+     for(int loopIterator = 1; loopIterator <= 3; loopIterator++)
+      {for(int verticalIterator = 0; verticalIterator < 3; verticalIterator++)
+         {for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++)
              {
-                 valuesOfGrid[verticalIterator][horizontalIterator]->setText(valuesOfGrid[verticalIterator++][horizontalIterator]->text());
-                 changeTile(verticalIterator, horizontalIterator);
-                 valuesOfGrid[verticalIterator++][horizontalIterator]->setText("");
-                 changeTile(verticalIterator++, horizontalIterator);
-             }
-            }
-     }
-     */
+              if(valuesOfGrid[verticalIterator][horizontalIterator]->text() == "" && valuesOfGrid[verticalIterator + 1][horizontalIterator]->text() != "")
+              {
+                  valuesOfGrid[verticalIterator][horizontalIterator]->setText(valuesOfGrid[verticalIterator + 1][horizontalIterator]->text());
+                  changeTile(verticalIterator, horizontalIterator);
+                  valuesOfGrid[verticalIterator + 1][horizontalIterator]->setText("");
+                  changeTile(verticalIterator + 1, horizontalIterator);
+              }
+         }
+        }
+    }
  }
+
+ void TwentyFortyEight::downIsPressed()
+ {
+     for(int verticalIterator = 3; verticalIterator > 0; verticalIterator--)
+        {for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++)
+         {
+           if((valuesOfGrid[verticalIterator][horizontalIterator]->text() == valuesOfGrid[verticalIterator - 1][horizontalIterator]->text())
+                   && valuesOfGrid[verticalIterator][horizontalIterator]->text() != "")
+           {
+               valuesOfGrid[verticalIterator - 1][horizontalIterator]->setText("");
+               changeTile(verticalIterator - 1, horizontalIterator);
+               valuesOfGrid[verticalIterator][horizontalIterator]->setText(QString::number(2*valuesOfGrid[verticalIterator][horizontalIterator]->text().toInt()));
+               changeTile(verticalIterator, horizontalIterator);
+           }
+         }
+     }
+     for(int loopIterator = 1; loopIterator <= 3; loopIterator++)
+      {for(int verticalIterator = 3; verticalIterator > 0; verticalIterator--)
+         {for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++)
+             {
+              if(valuesOfGrid[verticalIterator][horizontalIterator]->text() == "" && valuesOfGrid[verticalIterator - 1][horizontalIterator]->text() != "")
+              {
+                  valuesOfGrid[verticalIterator][horizontalIterator]->setText(valuesOfGrid[verticalIterator - 1][horizontalIterator]->text());
+                  changeTile(verticalIterator, horizontalIterator);
+                  valuesOfGrid[verticalIterator - 1][horizontalIterator]->setText("");
+                  changeTile(verticalIterator - 1, horizontalIterator);
+              }
+         }
+        }
+    }
+ }
+
