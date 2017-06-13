@@ -40,9 +40,7 @@ TwentyFortyEight::TwentyFortyEight(QWidget *parent) :
 
     setFixedSize(400,400);
     setFocus();
-   // placeRandomValueInGrid();
-    valuesOfGrid[0][0]->setText("2");
-    changeTile(0,0);
+    placeRandomValueInGrid();
 }
 
 TwentyFortyEight::~TwentyFortyEight()
@@ -54,7 +52,7 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
 {
     switch(valuesOfGrid[verticalPosition][horizontalPosition]->text().toInt()){
         case 0:
-            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: #ccc79b;}");
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: #ccc79b; color: #ccc79b}");
             break;
         case 2:
             valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: blue; color: black; font: 15pt; border-radius: 7px}");
@@ -121,33 +119,39 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
 
  void TwentyFortyEight::keyPressEvent(QKeyEvent *event)
  {
+     bool hasSomethingMoved = false;
      switch(event->key())
      {
          case Qt::Key_Up:
-             upIsPressed();
+             hasSomethingMoved = upIsPressed();
              break;
          case Qt::Key_Down:
-             downIsPressed();
+             hasSomethingMoved = downIsPressed();
              break;
          case Qt::Key_Left:
-             leftIsPressed();
+             hasSomethingMoved = leftIsPressed();
              break;
          case Qt::Key_Right:
-             rightIsPressed();
+             hasSomethingMoved = rightIsPressed();
              break;
          default:
              QMainWindow::keyPressEvent(event);
      }
-     placeRandomValueInGrid();
+     if(hasSomethingMoved == true)
+     {
+        placeRandomValueInGrid();
+     }
  }
 
- void TwentyFortyEight::upIsPressed()
+ bool TwentyFortyEight::upIsPressed()
  {
+    bool somethingMoved = false;
     for(int verticalIterator = 0; verticalIterator < 3; verticalIterator++)
         {for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++)
             {
              if(valuesOfGrid[verticalIterator][horizontalIterator]->text() == "" && valuesOfGrid[verticalIterator + 1][horizontalIterator]->text() != "")
              {
+                 somethingMoved = true;
                  valuesOfGrid[verticalIterator][horizontalIterator]->setText(valuesOfGrid[verticalIterator + 1][horizontalIterator]->text());
                  changeTile(verticalIterator, horizontalIterator);
                  valuesOfGrid[verticalIterator + 1][horizontalIterator]->setText("");
@@ -173,6 +177,7 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
            if((valuesOfGrid[verticalIterator][horizontalIterator]->text() == valuesOfGrid[verticalIterator + 1][horizontalIterator]->text())
                    && valuesOfGrid[verticalIterator][horizontalIterator]->text() != "")
            {
+               somethingMoved = true;
                valuesOfGrid[verticalIterator + 1][horizontalIterator]->setText("");
                changeTile(verticalIterator + 1, horizontalIterator);
                valuesOfGrid[verticalIterator][horizontalIterator]->setText(QString::number(2*valuesOfGrid[verticalIterator][horizontalIterator]->text().toInt()));
@@ -192,15 +197,18 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
          }
         }
        }
+     return somethingMoved;
 }
 
- void TwentyFortyEight::downIsPressed()
+bool TwentyFortyEight::downIsPressed()
  {
+    bool somethingMoved = false;
      for(int verticalIterator = 3; verticalIterator > 0; verticalIterator--)
          {for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++)
              {
               if(valuesOfGrid[verticalIterator][horizontalIterator]->text() == "" && valuesOfGrid[verticalIterator - 1][horizontalIterator]->text() != "")
               {
+                  somethingMoved = true;
                   valuesOfGrid[verticalIterator][horizontalIterator]->setText(valuesOfGrid[verticalIterator - 1][horizontalIterator]->text());
                   changeTile(verticalIterator, horizontalIterator);
                   valuesOfGrid[verticalIterator - 1][horizontalIterator]->setText("");
@@ -226,6 +234,7 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
            if((valuesOfGrid[verticalIterator][horizontalIterator]->text() == valuesOfGrid[verticalIterator - 1][horizontalIterator]->text())
                    && valuesOfGrid[verticalIterator][horizontalIterator]->text() != "")
            {
+               somethingMoved = true;
                valuesOfGrid[verticalIterator - 1][horizontalIterator]->setText("");
                changeTile(verticalIterator - 1, horizontalIterator);
                valuesOfGrid[verticalIterator][horizontalIterator]->setText(QString::number(2*valuesOfGrid[verticalIterator][horizontalIterator]->text().toInt()));
@@ -245,15 +254,18 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
               }
          }
         }
+     return somethingMoved;
 }
 
- void TwentyFortyEight::leftIsPressed()
+bool TwentyFortyEight::leftIsPressed()
  {
+    bool somethingMoved = false;
      for(int verticalIterator = 0; verticalIterator < 4; verticalIterator++)
         {for(int horizontalIterator = 0; horizontalIterator < 3; horizontalIterator++)
          {
              if(valuesOfGrid[verticalIterator][horizontalIterator]->text() == "" && valuesOfGrid[verticalIterator][horizontalIterator + 1]->text() != "")
              {
+                 somethingMoved = true;
                  valuesOfGrid[verticalIterator][horizontalIterator]->setText(valuesOfGrid[verticalIterator][horizontalIterator + 1]->text());
                  changeTile(verticalIterator, horizontalIterator);
                  valuesOfGrid[verticalIterator][horizontalIterator + 1]->setText("");
@@ -279,6 +291,7 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
            if(valuesOfGrid[verticalIterator][horizontalIterator]->text() == valuesOfGrid[verticalIterator][horizontalIterator + 1]->text()
                    && valuesOfGrid[verticalIterator][horizontalIterator]->text() != "")
            {
+               somethingMoved = true;
                valuesOfGrid[verticalIterator][horizontalIterator + 1]->setText("");
                changeTile(verticalIterator, horizontalIterator + 1);
                valuesOfGrid[verticalIterator][horizontalIterator]->setText(QString::number(2*valuesOfGrid[verticalIterator][horizontalIterator]->text().toInt()));
@@ -298,15 +311,18 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
              }
          }
      }
+     return somethingMoved;
  }
 
- void TwentyFortyEight::rightIsPressed()
+bool TwentyFortyEight::rightIsPressed()
  {
+    bool somethingMoved = false;
      for(int verticalIterator = 0; verticalIterator < 4; verticalIterator++)
          {for(int horizontalIterator = 3; horizontalIterator > 0; horizontalIterator--)
              {
               if(valuesOfGrid[verticalIterator][horizontalIterator]->text() == "" && valuesOfGrid[verticalIterator][horizontalIterator - 1]->text() != "")
               {
+                  somethingMoved = true;
                   valuesOfGrid[verticalIterator][horizontalIterator]->setText(valuesOfGrid[verticalIterator][horizontalIterator - 1]->text());
                   changeTile(verticalIterator, horizontalIterator);
                   valuesOfGrid[verticalIterator][horizontalIterator - 1]->setText("");
@@ -332,6 +348,7 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
            if((valuesOfGrid[verticalIterator][horizontalIterator]->text() == valuesOfGrid[verticalIterator][horizontalIterator - 1]->text())
                    && valuesOfGrid[verticalIterator][horizontalIterator]->text() != "")
            {
+               somethingMoved = true;
                valuesOfGrid[verticalIterator][horizontalIterator - 1]->setText("");
                changeTile(verticalIterator, horizontalIterator - 1);
                valuesOfGrid[verticalIterator][horizontalIterator]->setText(QString::number(2*valuesOfGrid[verticalIterator][horizontalIterator]->text().toInt()));
@@ -351,4 +368,5 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
               }
          }
         }
+     return somethingMoved;
 }
