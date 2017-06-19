@@ -98,7 +98,7 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
     }
 }
 
- void TwentyFortyEight:: placeRandomValueInGrid(){
+ void TwentyFortyEight::placeRandomValueInGrid(){
      bool gridIsEmpty = true;
      bool gridIsFull = true;
      for(int verticalIterator = 0; verticalIterator < 4; verticalIterator++)
