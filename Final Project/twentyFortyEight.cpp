@@ -34,13 +34,26 @@ TwentyFortyEight::TwentyFortyEight(QWidget *parent) :
         }
 
     setFixedSize(400,400);
-    setFocus();
     placeRandomValueInGrid();
 }
 
 TwentyFortyEight::~TwentyFortyEight()
 {
-    delete ui;
+    for(int verticalIterator = 0; verticalIterator < 4; verticalIterator++){
+        for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++){
+            delete valuesOfGrid[verticalIterator][horizontalIterator];
+        }
+    }
+}
+
+void TwentyFortyEight::newGameCalled(){
+    for(int verticalIterator = 0; verticalIterator < 4; verticalIterator++){
+        for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++){
+            valuesOfGrid[verticalIterator][horizontalIterator]->setText("");
+            changeTile(verticalIterator, horizontalIterator);
+        }
+    }
+    placeRandomValueInGrid();
 }
 
 void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
