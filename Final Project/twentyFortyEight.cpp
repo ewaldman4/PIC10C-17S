@@ -13,6 +13,7 @@ TwentyFortyEight::TwentyFortyEight(QWidget *parent) :
 
     newGame = new QPushButton;
     newGame->setText("New Game");
+    QObject::connect(newGame, SIGNAL(clicked()), this, SLOT(newGameCalled()));
     grid->addWidget(newGame,0,0);
 
     gameTitle = new QLabel;
