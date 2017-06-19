@@ -21,12 +21,6 @@ TwentyFortyEight::TwentyFortyEight(QWidget *parent) :
     gameTitle->setStyleSheet("QLabel{background-color: #46dbbd; color: white; font: 20pt}");
     grid->addWidget(gameTitle,0,1);
 
-    score = new QLabel;
-    score->setText("Score: \n 0");
-    score->setAlignment(Qt::AlignCenter);
-    score->setStyleSheet("QLabel{background-color: #bbaaa9; color: darkRed; font:15pt;}");
-    grid->addWidget(score,0,2);
-
     for(int verticalIterator = 0; verticalIterator < 4; verticalIterator++)
         {
         for(int horizontalIterator = 0; horizontalIterator < 4; horizontalIterator++)
@@ -62,6 +56,30 @@ void TwentyFortyEight::changeTile(int verticalPosition, int horizontalPosition)
             break;
         case 8:
             valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: green; color: black; font: 15pt; border-radius: 7px}");
+            break;
+        case 16:
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: yellow; color: black; font: 15pt; border-radius: 7px}");
+            break;
+        case 32:
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: cyan; color: black; font: 15pt; border-radius: 7px}");
+            break;
+        case 64:
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: magenta; color: black; font: 15pt; border-radius: 7px}");
+            break;
+        case 128:
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: #1a2e4f; color: black; font: 15pt; border-radius: 7px}");
+            break;
+       case 256:
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: #18381e; color: black; font: 15pt; border-radius: 7px}");
+            break;
+       case 512:
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: #d6990c; color: black; font: 15pt; border-radius: 7px}");
+            break;
+       case 1024:
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: #8cd60c; color: black; font: 15pt; border-radius: 7px}");
+            break;
+      case 2048:
+            valuesOfGrid[verticalPosition][horizontalPosition]->setStyleSheet("QLabel{background-color: black; color: white; font: 15pt; border-radius: 7px}");
             break;
     }
 }
