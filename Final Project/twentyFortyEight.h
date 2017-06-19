@@ -22,6 +22,9 @@ public:
     explicit TwentyFortyEight(QWidget *parent = 0);
     ~TwentyFortyEight();
 
+private slots:
+void newGameCalled();
+
 private:
     void keyPressEvent (QKeyEvent *event);
     bool upIsPressed();
